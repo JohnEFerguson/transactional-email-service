@@ -1,4 +1,5 @@
 # Jack Ferguson 2021
+# in the future the app can be refactored into a class
 from flask import Flask, Response, abort, request as flask_request
 from flask_expects_json import expects_json
 from .email import Email
@@ -38,6 +39,7 @@ def create_app(test_config=None):
             request_body = flask_request.json
             email = Email(request_body=request_body)
 
+            # switching like this is not a scalable approach, but is sufficient for now
             if app.config['TESTING']: 
                 ## for tests just return 200
                 ## this would be updated when we can support better integration testing
@@ -52,15 +54,10 @@ def create_app(test_config=None):
             else:
                 ## something went wrong with 3rd party integration
                 ## here we should log what went wrong so that issue can be addressed
-                print(response.text)
                 abort(500)
 
-
-        ## remove this
-        except Exception as e:
-            print(e)
-            ## here we should log what went wrong
-            ## catch more specific exception
+        except:
+            # should catch specific exception, log what happened
             abort(500)
 
     return app

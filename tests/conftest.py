@@ -1,8 +1,7 @@
+# Jack Ferguson 2021
 import os
 import tempfile
-
 import pytest
-
 from app import create_app
 
 @pytest.fixture

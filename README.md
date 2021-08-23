@@ -15,10 +15,35 @@ Using Python3
 ```
 
 ## Test
+### Unit testing
 ```
     $ python3 -m pytest -v 
 ```
-
+### Integration testing
+- Run the app for Mailgun
+- Run from the commandline:
+```
+curl -d '{
+"to": "john.everett.ferguson@gmail.com",
+"to_name": "Mr. Fake",
+"from": "mailgun@sandboxffc4573d4cd6461a953db1e213b31cea.mailgun.org",
+"from_name":"Ms. Fake",
+"subject": "A message from The Fake Family",
+"body": "<h1>Your Bill</h1><p>$10</p>"
+}' -H "Content-Type: application/json" -X POST http://localhost:5000/email
+```
+- Run the app for Sendgrid
+- Run from the commandline:
+```
+curl -d '{
+"to": "john.everett.ferguson@gmail.com",
+"to_name": "Mr. Fake",
+"from": "john.everett.ferguson@gmail.com",                            
+"from_name":"Ms. Fake",
+"subject": "A message from The Fake Family", 
+"body": "<h1>Your Bill</h1><p>$10</p>"
+}' -H "Content-Type: application/json" -X POST http://localhost:5000/email
+```
 ## Discussion
 
 This task took ~6 hours
@@ -36,6 +61,10 @@ Similarly, Flask offers
 
 ### Next steps
 - Default behavior could be: Try with mailgun, retry with sendgrid in case of failures 
+- More unit test coverage
+- Logging
+- More specific exception handling
+- Separate into controllers, services, and data models
 - Authenticate requests
 - Deployment details like server url, port, etc should be configurable
 - Containerize and use DevOps tools like Ansible, Kubernetes for deployment

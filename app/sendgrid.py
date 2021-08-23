@@ -1,3 +1,4 @@
+# Jack Ferguson 2021
 import requests
 
 class SendgridClient:
@@ -14,6 +15,7 @@ class SendgridClient:
                 "content": [{"type": "text/plain", "value": email.body}]
                 }
 
+    # not covered by unit tests
     def send_via_sendgrid(self, email, api_key):
         return requests.post(
                 self._base_url,

@@ -1,3 +1,5 @@
+# Jack Ferguson 2021
+
 def test_post_email_success(client):
     response = client.post("/email", 
             json={

@@ -1,3 +1,4 @@
+# Jack Ferguson 2021
 from app import Email, MailgunClient, SendgridClient
 
 def test_mailgun_format_request(client):
