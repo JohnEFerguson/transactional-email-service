@@ -1,4 +1,5 @@
 # Transactional Email Service
+A service that provides an abstraction between two service providers, Mailgun and Sendgrid.
 
 ## Install
 Using Python3
